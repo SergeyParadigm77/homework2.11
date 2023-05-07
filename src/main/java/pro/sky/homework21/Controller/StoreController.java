@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pro.sky.homework21.Service.Basket;
+import pro.sky.homework21.Service.OrderService;
 
 
 import java.util.List;
@@ -13,20 +13,20 @@ import java.util.Set;
 @RestController
 @RequestMapping("/order")
 public class StoreController {
-    private final Basket basket;
 
-    public StoreController(Basket basket) {
-        this.basket = basket;
+    private final OrderService orderService;
+
+    public StoreController(OrderService orderService) {
+        this.orderService = orderService;
     }
-
 
     @GetMapping("/add")
     public Set<Integer> add(@RequestParam List<Integer> ids) {
-        return basket.add(ids);
+        return orderService.add(ids);
     }
     @GetMapping("/get")
     public Set<Integer> get() {
-        return basket.get();
+        return orderService.get();
     }
 
 }
